@@ -1,6 +1,6 @@
 annotated-types==0.7.0
 blinker==1.9.0
-blis==0.7.11
+blis==0.7.10
 catalogue==2.0.10
 certifi==2025.1.31
 charset-normalizer==3.4.1
@@ -45,13 +45,14 @@ safetensors==0.5.3
 setuptools==78.1.1
 shellingham==1.5.4
 smart-open==6.4.0
-spacy==3.7.0 --prefer-binary
+--prefer-binary
+spacy==3.7.4 
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 srsly==2.5.1
 sympy==1.13.1
 terminaltables==3.1.10
-thinc==8.2.5
+thinc==8.2.3
 tokenizers==0.21.1
 torch==2.6.0
 tqdm==4.67.1

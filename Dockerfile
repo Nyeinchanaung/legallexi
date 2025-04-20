@@ -1,31 +1,10 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
-# Install system dependencies for wkhtmltopdf and blis
-RUN apt-get update && apt-get install -y \
-    wkhtmltopdf \
-    libssl-dev \
-    ca-certificates \
-    libfontconfig1 \
-    fonts-roboto \
-    build-essential \
-    libblas-dev \
-    libatlas-base-dev \
-    gfortran \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential gcc g++
 
-# Set working directory
 WORKDIR /app
+COPY . /app
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-# Copy requirements and install
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application code
-COPY . .
-
-# Expose port
-EXPOSE 8080
-
-# Run Gunicorn
-CMD ["gunicorn", "-c", "gunicorn_config.py", "app:app"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"]

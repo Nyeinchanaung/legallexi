@@ -1,5 +1,3 @@
---prefer-binary
-spacy==3.7.4
-thinc==8.2.3
-blis==0.7.10
-pdfkit==1.0.0
+build-essential
+gcc
+g++

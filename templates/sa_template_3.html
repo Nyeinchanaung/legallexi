@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Agreement - Strict Version</title>
+    <style>
+    :root {
+        --primary-color: #1c2526;
+        --secondary-color: #6b7280;
+        --dark-color: #111827;
+        --light-color: #f3f4f6;
+    }
+
+    body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-color);
+        }
+    
+        .contract-container {
+            background: white;
+            border-radius: 8px;
+            /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+    
+        .contract-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+        }
+    
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+    
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin: 1rem 0 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+    
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+    
+        .effective-date {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+    
+        .parties {
+            overflow: hidden; /* Clearfix for floats */
+            margin: 2rem 0;
+        }
+    
+        .party {
+            width: 45%;
+            margin-right: 5%;
+            float: left;
+        }
+    
+        .party:last-child {
+            margin-right: 0;
+            float: right;
+        }
+    
+        .party-name {
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    
+        .signature-block {
+            overflow: hidden; /* Clearfix for floats */
+            margin-top: 4rem;
+        }
+    
+        .signature {
+            width: 45%;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            float: left;
+        }
+    
+        .signature:last-child {
+            float: right;
+        }
+    
+        .signature-label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    
+        .clause {
+            margin-bottom: 1.5rem;
+        }
+    
+        .clause-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    
+        ol, ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+    
+        li {
+            margin-bottom: 0.5rem;
+        }
+    
+        .download-button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            text-align: center;
+        }
+    
+        .download-button:hover {
+            background-color: #2980b9;
+        }
+    
+        /* Adjust margins for PDF */
+        @media print {
+            .contract-container {
+                margin: 0.5in;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contract-container">
+        <div class="contract-header">
+            <h1>SERVICE CONTRACT</h1>
+            <p class="effective-date">Effective as of {{ start_date }}</p>
+        </div>
+        
+        <div class="parties">
+            <div class="party" style="width: 45%; margin-right: 5%; float: left;">
+                <div class="party-name">{{ client_name }}</div>
+                <div>(the "Client")</div>
+            </div>
+            <div class="party" style="width: 45%; float: right;">
+                <div class="party-name">{{ provider_name }}</div>
+                <div>(the "Provider")</div>
+            </div>
+        </div>
+        
+        <h2>1. Scope of Services</h2>
+        <p>The Provider shall render services strictly as defined: {{ service_description | default("specified services") }}, from {{ start_date }} to {{ end_date }}, subject to the terms herein.</p>
+        
+        <h2>2. Provider Obligations</h2>
+        <div class="clause">
+            <p>The Provider is obligated to:</p>
+            <ol type="a">
+                <li>Execute the Services with utmost diligence;</li>
+                <li>Adhere to all applicable legal and regulatory requirements;</li>
+                <li>Complete the Services no later than {{ end_date }}, barring force majeure.</li>
+            </ol>
+        </div>
+        
+        <h2>3. Payment Terms</h2>
+        <div class="clause">
+            <p>The Client shall remit payment of {{ payment_terms | default("the agreed sum") }} to the Provider within {{ payment_due | default("fifteen (15) days") }} of invoice issuance. Late payments shall incur penalties as specified.</p>
+        </div>
+        
+        <h2>4. Term and Termination</h2>
+        <div class="clause">
+            <p>This Contract shall commence on {{ start_date }} and conclude on {{ end_date }}. The Provider may terminate this Contract immediately upon the Client’s failure to comply with any term, including non-payment.</p>
+        </div>
+        
+        <h2>5. Confidentiality</h2>
+        <p>The Client shall not disclose any proprietary information of the Provider, during or after the term, under penalty of legal action.</p>
+        
+        <h2>6. Limitation of Liability</h2>
+        <p>The Provider’s liability for any claims arising from this Contract shall not exceed the total payments received from the Client.</p>
+        
+        <h2>7. Governing Law</h2>
+        <p>This Contract is governed by the laws of {{ governing_law | default("Thailand") }}. Disputes shall be resolved in the exclusive jurisdiction of {{ jurisdiction | default("Thailand") }} courts.</p>
+        
+        <div class="signature-block">
+            <div class="signature" style="width: 45%; float: left;">
+                <div class="signature-label">Client:</div>
+                <div>{{ client_name }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+            <div class="signature" style="width: 45%; float: right;">
+                <div class="signature-label">Provider:</div>
+                <div>{{ provider_name }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+        </div>
+        {% if download %}
+        <div style="text-align: center; margin-top: 2rem;">
+            <form method="POST" action="/download_pdf/3">
+                <input type="hidden" name="contract_id" value="sa">
+                <input type="hidden" name="template_choice" value="3">
+                <input type="hidden" name="original_data_json" value="{{ original_data_json }}">
+                <button type="submit" class="download-button">Download as PDF</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>Generated by AI Contract Generator on {{ generation_date }}. Not legal advice.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

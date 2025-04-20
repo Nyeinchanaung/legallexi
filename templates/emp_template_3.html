@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employment Contract - Strict Version</title>
+    <style>
+    :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --dark-color: #333;
+            --light-color: #f9f9f9;
+        }
+    
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-color);
+        }
+    
+        .contract-container {
+            background: white;
+            border-radius: 8px;
+            /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+    
+        .contract-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+        }
+    
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+    
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin: 1rem 0 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+    
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+    
+        .effective-date {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+    
+        .parties {
+            overflow: hidden; /* Clearfix for floats */
+            margin: 2rem 0;
+        }
+    
+        .party {
+            width: 45%;
+            margin-right: 5%;
+            float: left;
+        }
+    
+        .party:last-child {
+            margin-right: 0;
+            float: right;
+        }
+    
+        .party-name {
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    
+        .signature-block {
+            overflow: hidden; /* Clearfix for floats */
+            margin-top: 4rem;
+        }
+    
+        .signature {
+            width: 45%;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            float: left;
+        }
+    
+        .signature:last-child {
+            float: right;
+        }
+    
+        .signature-label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    
+        .clause {
+            margin-bottom: 1.5rem;
+        }
+    
+        .clause-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    
+        ol, ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+    
+        li {
+            margin-bottom: 0.5rem;
+        }
+    
+        .download-button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            text-align: center;
+        }
+    
+        .download-button:hover {
+            background-color: #2980b9;
+        }
+    
+        /* Adjust margins for PDF */
+        @media print {
+            .contract-container {
+                margin: 0.5in;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contract-container">
+        <div class="contract-header">
+            <h1>EMPLOYMENT CONTRACT</h1>
+            <p class="effective-date">Effective as of {{ start_date }}</p>
+        </div>
+        
+        <div class="parties">
+            <div class="party" style="width: 45%; margin-right: 5%; float: left;">
+                <div class="party-name">{{ employer_name }}</div>
+                <div>(the "Employer")</div>
+            </div>
+            <div class="party" style="width: 45%; float: right;">
+                <div class="party-name">{{ employee_name }}</div>
+                <div>(the "Employee")</div>
+            </div>
+        </div>
+        
+        <h2>1. Engagement</h2>
+        <p>The Employer engages the Employee in the capacity of {{ position | default("an employee") }} at {{ work_location | default("the designated workplace") }}, subject to strict compliance with all terms herein.</p>
+        
+        <h2>2. Obligations of Employee</h2>
+        <div class="clause">
+            <p>The Employee shall be obligated to:</p>
+            <ol type="a">
+                <li>Execute all duties as directed by the Employer;</li>
+                <li>Adhere strictly to all Employer policies, rules, and regulations;</li>
+                <li>Refrain from any activities detrimental to the Employer’s interests.</li>
+            </ol>
+        </div>
+        
+        <h2>3. Remuneration</h2>
+        <div class="clause">
+            <p>The Employer shall provide:</p>
+            <ol type="a">
+                <li>A fixed salary of {{ salary | default("as determined") }} per {{ pay_period | default("month") }};</li>
+                <li>Discretionary bonuses, if any, at the Employer’s sole discretion;</li>
+                <li>Standard benefits as per company policy, subject to change.</li>
+            </ol>
+        </div>
+        
+        <h2>4. Duration and Termination</h2>
+        <div class="clause">
+            <p>This Contract shall commence on {{ start_date }} and remain in effect until terminated by the Employer with {{ notice_period | default("thirty (30) days") }} notice, or immediately upon the Employee’s breach of any term herein, including but not limited to insubordination or negligence.</p>
+        </div>
+        
+        <h2>5. Non-Disclosure</h2>
+        <p>The Employee is strictly prohibited from disclosing any proprietary or confidential information of the Employer, during or after the term of employment, under penalty of legal action.</p>
+        
+        <h2>6. Non-Compete</h2>
+        <p>The Employee shall not engage in any competitive activities for {{ non_compete_period | default("two (2) years") }} following termination, within {{ non_compete_area | default("the same industry") }}.</p>
+        
+        <h2>7. Governing Law</h2>
+        <p>This Contract is governed by and construed in accordance with the laws of {{ governing_law | default("Thailand") }}. Any disputes shall be resolved in the exclusive jurisdiction of {{ jurisdiction | default("Thailand") }} courts.</p>
+        
+        <div class="signature-block">
+            <div class="signature" style="width: 45%; float: left;">
+                <div class="signature-label">Employer:</div>
+                <div>{{ employer_name }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+            <div class="signature" style="width: 45%; float: right;">
+                <div class="signature-label">Employee:</div>
+                <div>{{ employee_name }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+        </div>
+        {% if download %}
+        <div style="text-align: center; margin-top: 2rem;">
+            <form method="POST" action="/download_pdf/3">
+                <input type="hidden" name="contract_id" value="emp">
+                <input type="hidden" name="template_choice" value="3">
+                <input type="hidden" name="original_data_json" value="{{ original_data_json }}">
+                <button type="submit" class="download-button">Download as PDF</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>Generated by AI Contract Generator on {{ generation_date }}. Not legal advice.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

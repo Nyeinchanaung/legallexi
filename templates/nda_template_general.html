@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDA Agreement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --dark-color: #333;
+            --light-color: #f9f9f9;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-color);
+        }
+        
+        .contract-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contract-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .effective-date {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .parties {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        
+        .party {
+            width: 45%;
+        }
+        
+        .party-name {
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+        }
+        
+        .signature {
+            width: 45%;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+        }
+        
+        .signature-label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .clause {
+            margin-bottom: 1.5rem;
+        }
+        
+        .clause-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        ol, ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        body {
+            font-family: 'Times New Roman', serif;
+        }
+        h1, h2 {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .contract-header { border-bottom: 2px solid #1a4567; }
+        .highlight-clause { background: #f8f9fa; padding: 15px; }
+        .variable-field { border-bottom: 1px dashed #666; }
+    </style>
+</head>
+<body>
+    <div class="contract-container">
+        <div class="contract-header">
+            <h1>COMPREHENSIVE NON-DISCLOSURE AGREEMENT</h1>
+            <p class="effective-date">Effective Date: <strong>{{ effective_date }}</strong></p>
+        </div>
+
+        <!-- Parties Section -->
+        <div class="parties">
+            <div class="party">
+                <div class="party-name">{{ disclosing_party }}</div>
+                <div>("Discloser")</div>
+            </div>
+            <div class="party">
+                <div class="party-name">{{ receiving_party }}</div>
+                <div>("Recipient")</div>
+            </div>
+        </div>
+
+        <!-- Core Clauses -->
+        <h2>1. Definitions</h2>
+        <p>1.1 "Confidential Information" means {{ confidential_definition | default("any non-public business, technical, or financial information") }} including but not limited to:</p>
+        <ul>
+            <li>{{ example_1 | default("Trade secrets and know-how") }}</li>
+            <li>{{ example_2 | default("Business strategies and marketing plans") }}</li>
+            <li>{{ example_3 | default("Customer lists and supplier agreements") }}</li>
+        </ul>
+
+        <h2>2. Obligations of Recipient</h2>
+        <ol type="a">
+            <li>Maintain confidentiality using {{ security_standard | default("industry-standard measures") }}</li>
+            <li>Limit access to {{ authorized_persons | default("employees with legitimate need-to-know") }}</li>
+            <li>Prohibit copying except for {{ permitted_copies | default("execution of authorized purposes") }}</li>
+        </ol>
+
+        <h2>3. Exclusions</h2>
+        <p>Confidential Information does not include:</p>
+        <ul>
+            <li>Publicly available information</li>
+            <li>Independently developed material</li>
+            <li>Information received from third parties without restriction</li>
+        </ul>
+
+        <h2>4. Term & Termination</h2>
+        <p>4.1 This Agreement remains effective for {{ base_term | default("five (5) years") }}.<br>
+        4.2 Surviving obligations include {{ survival_clauses | default("confidentiality, return of materials") }}.</p>
+
+        <h2>5. Return of Materials</h2>
+        <p>Upon request, Recipient shall {{ return_actions | default("destroy or return all materials within thirty (30) days") }}.</p>
+
+        <h2>6. Remedies</h2>
+        <p>Breach may result in:</p>
+        <ul>
+            <li>Injunctive relief</li>
+            <li>Liquidated damages of {{ damage_amount | default("USD 500 per violation") }}</li>
+            <li>Payment of legal fees</li>
+        </ul>
+
+        <h2>7. Governing Law</h2>
+        <p>This Agreement shall be governed by {{ governing_law | default("the laws of the State of Delaware") }}.</p>
+
+        <h2>8. Miscellaneous</h2>
+        <ol type="a">
+            <li><strong>Assignment:</strong> Prohibited without prior consent</li>
+            <li><strong>Severability:</strong> Invalid provisions shall be reformed</li>
+            <li><strong>Notices:</strong> {{ notice_provisions | default("Written notice via certified mail") }}</li>
+        </ol>
+
+        <h2>9. Entire Agreement</h2>
+        <p>This document supersedes all prior agreements regarding {{ subject_matter | default("the disclosed information") }}.</p>
+
+        <div class="footer">
+            <p>IN WITNESS WHEREOF, the parties have executed this Agreement as of the Effective Date.</p>
+            <div class="signature-block">
+                <div class="signature">
+                    <p><strong>Disclosing Party:</strong></p>
+                    <p>{{ disclosing_party }}</p>
+                    <p>Signature: ___________________________</p>
+                    <p>Name: ___________________________</p>
+                    <p>Title: ___________________________</p>
+                    <p>Date: ___________________________</p>
+                </div>
+
+                <div class="signature">
+                    <p><strong>Receiving Party:</strong></p>
+                    <p>{{ receiving_party }}</p>
+                    <p>Signature: ___________________________</p>
+                    <p>Name: ___________________________</p>
+                    <p>Title: ___________________________</p>
+                    <p>Date: ___________________________</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; {{ current_year }} LegalExi. All rights reserved.</p>
+            <p>This document is a template and should be customized to meet your specific needs.</p>
+            <p>For legal advice, please consult a qualified attorney.</p>
+        </div>
+    </div>
+</body>
+</html>

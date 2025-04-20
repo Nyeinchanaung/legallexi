@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contract Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .error { color: red; }
+        label { display: inline-block; width: 200px; }
+        .reply { color: blue; font-style: italic; }
+    </style>
+</head>
+<body>
+    <h1>Contract Generator</h1>
+    
+    {% if not contract_type %}
+        <!-- Initial prompt input -->
+        <form method="POST" action="/">
+            <label for="prompt">Enter your contract request:</label><br>
+            <textarea type="text" id="prompt" name="prompt" placeholder="e.g., I need an NDA between Acme Corp and Beta Inc" rows="4" cols="50" required></textarea>
+                <br><br>
+            <input type="submit" value="Generate">
+        </form>
+    {% elif step == "validate" %}
+        <!-- Validation step -->
+        <h2>Validate Extracted Data for {{ contract_type }}</h2>
+        {% if reply %}
+            <p class="reply">{{ reply }}</p>
+        {% endif %}
+        <form method="POST" action="/validate">
+            <input type="hidden" name="contract_type" value="{{ contract_type }}">
+            <input type="hidden" name="original_data" value="{{ original_data_json }}">
+            {% for field, value in original_data.items() %}
+                <label>{{ field.replace('_', ' ') }}:</label>
+                <input type="text" name="{{ field }}" value="{{ value|default('') }}"><br><br>
+            {% endfor %}
+            <input type="submit" name="submit" value="Confirm and Proceed">
+        </form>
+        <p><a href="/">Back to start</a></p>
+    {% elif step == "missing" %}
+        <!-- Missing fields form -->
+        <h2>Missing Information for {{ contract_type }}</h2>
+        {% if reply %}
+            <p class="reply">{{ reply }}</p>
+        {% endif %}
+        <form method="POST" action="/submit_missing">
+            <input type="hidden" name="contract_type" value="{{ contract_type }}">
+            <input type="hidden" name="original_data" value="{{ original_data_json }}">
+            {% for field in missing %}
+                <label>Please provide the {{ field.replace('_', ' ') }}:</label><br>
+                <input type="text" name="{{ field }}" required><br><br>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+        <p><a href="/">Back to start</a></p>
+    {% elif step == "optional" %}
+        <!-- Optional clauses selection -->
+        <h2>Customize Your {{ contract_type }}</h2>
+        <form method="POST" action="/optional">
+            <input type="hidden" name="contract_type" value="{{ contract_type }}">
+            <input type="hidden" name="original_data" value="{{ original_data_json }}">
+            <label>Include a non-compete clause?</label>
+            <input type="radio" name="non_compete" value="yes"> Yes
+            <input type="radio" name="non_compete" value="no" checked> No<br><br>
+            <label>Non-compete details (if yes):</label>
+            <input type="text" name="non_compete_details" placeholder="e.g., 1 year, no competing products"><br><br>
+            <input type="submit" name="submit" value="Generate Contract">
+        </form>
+        <p><a href="/">Back to start</a></p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,153 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --dark-color: #333;
+    --light-color: #f9f9f9;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--light-color);
+}
+
+.contract-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contract-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 1rem;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.effective-date {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.parties {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.party {
+    width: 45%;
+}
+
+.party-name {
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.signature-block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+}
+
+.signature {
+    width: 45%;
+    border-top: 1px solid #333;
+    padding-top: 1rem;
+}
+
+.signature-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.clause {
+    margin-bottom: 1.5rem;
+}
+
+.clause-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+ol, ul {
+    margin: 1rem 0 1rem 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+.download-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.download-button:hover {
+    background-color: #2980b9;
+}
+
+/* Ensure content fits within PDF pages */
+.contract-container {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+/* Prevent elements from being split across pages */
+h1, h2, .parties, .signature-block, .footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    page-break-before: auto;
+    page-break-after: auto;
+}
+
+/* Adjust margins for better content fit */
+@media print {
+    .contract-container {
+        margin: 0.5in;
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        /* Add to index.html's style */
+.editable-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.clause-editor {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    font-family: monospace;
+    border: 1px solid #ccc;
+}
+
+.dynamic-options {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <title>NDA</title>
+</head>
+<body>
+    <h1>NON-DISCLOSURE AGREEMENT</h1>
+    <p>This Agreement is effective as of {{ effective_date }} between {{ disclosing_party }} and {{ receiving_party }}.</p>
+
+    <!-- Make clauses editable -->
+    <div class="editable-section">
+        <h3>1. Definition of Confidential Information</h3>
+        <textarea name="definition" class="clause-editor">{{ definition }}</textarea>
+    </div>
+    <div class="editable-section">
+        <h3>2. Obligations of Receiving Party</h3>
+        <textarea name="obligation" class="clause-editor">{{ obligation }}</textarea>
+    </div>
+    <div class="editable-section">
+        <h3>3. Exclusions from Confidential Information</h3>
+        <textarea name="obligation" class="clause-editor">{{ duration }}</textarea>
+    </div>
+    <div class="editable-section">
+        <h3>4. Non-Compete Clause</h3>
+        <textarea name="obligation" class="clause-editor">{{ non_compete }}</textarea>
+    </div>
+</body>
+</html>

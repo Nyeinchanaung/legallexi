@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDA Agreement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --dark-color: #333;
+            --light-color: #f9f9f9;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-color);
+        }
+        
+        .contract-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contract-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .effective-date {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .parties {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        
+        .party {
+            width: 45%;
+        }
+        
+        .party-name {
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+        }
+        
+        .signature {
+            width: 45%;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+        }
+        
+        .signature-label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .clause {
+            margin-bottom: 1.5rem;
+        }
+        
+        .clause-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        ol, ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="contract-container">
+        <div class="contract-header">
+            <h1>NON-DISCLOSURE AGREEMENT</h1>
+            <p class="effective-date">This Agreement is made effective as of <strong>{{ effective_date }}</strong></p>
+        </div>
+        
+        <div class="parties">
+            <div class="party">
+                <div class="party-name">{{ disclosing_party }}</div>
+                <div>(the "Disclosing Party")</div>
+            </div>
+            <div class="party">
+                <div class="party-name">{{ receiving_party }}</div>
+                <div>(the "Receiving Party")</div>
+            </div>
+        </div>
+        
+        <h2>1. Purpose</h2>
+        <p>The Disclosing Party possesses certain confidential information relating to {{ purpose_description | default("their business operations, products, and services") }} (the "Purpose") that it desires to share with the Receiving Party.</p>
+        
+        <h2>2. Definition of Confidential Information</h2>
+        <div class="clause">
+            <p>For purposes of this Agreement, "Confidential Information" shall include all information or material that:</p>
+            <ol type="a">
+                <li>Is marked "Confidential," "Proprietary," or similar designation;</li>
+                <li>Is disclosed orally or visually and identified as confidential at the time of disclosure;</li>
+                <li>The Receiving Party knows or reasonably should know is confidential;</li>
+                <li>Includes, but is not limited to: trade secrets, technical data, business plans, customer lists, financial information, product designs, and marketing strategies.</li>
+            </ol>
+        </div>
+        
+        <h2>3. Obligations of Receiving Party</h2>
+        <div class="clause">
+            <p>The Receiving Party agrees to:</p>
+            <ol type="a">
+                <li>Maintain the Confidential Information in strict confidence;</li>
+                <li>Not disclose such information to any third parties without prior written consent;</li>
+                <li>Use the Confidential Information solely for the Purpose;</li>
+                <li>Take all reasonable precautions to protect the Confidential Information, using at least the same degree of care as it uses to protect its own confidential information.</li>
+            </ol>
+        </div>
+        
+        <h2>4. Term and Termination</h2>
+        <div class="clause">
+            <p>The obligations of confidentiality shall:</p>
+            <ol type="a">
+                <li>Remain in effect for a period of <strong>{{ confidentiality_period | default("five (5) years") }}</strong> from the Effective Date;</li>
+                <li>Survive termination of any business relationship between the parties;</li>
+                <li>Not apply to information that becomes publicly available through no fault of the Receiving Party.</li>
+            </ol>
+        </div>
+        
+        <h2>5. Return of Materials</h2>
+        <p>Upon written request of the Disclosing Party, the Receiving Party shall return all Confidential Information and any copies or derivative works within {{ return_period | default("thirty (30) days") }} of such request.</p>
+        
+        {% if non_compete == "yes" %}
+        <h2>6. Non-Compete (Optional)</h2>
+        <p>The Receiving Party agrees not to engage in any business activities competitive with the Disclosing Party for a period of {{ non_compete_period | default("one (1) year") }} following termination of this Agreement, specifically regarding {{ non_compete_scope | default("the products and services covered by the Confidential Information") }}.</p>
+        {% endif %}
+        
+        <h2>7. General Provisions</h2>
+        <div class="clause">
+            <ol type="a">
+                <li><strong>Governing Law:</strong> This Agreement shall be governed by the laws of {{ governing_law | default("the State of California") }}.</li>
+                <li><strong>Remedies:</strong> The parties acknowledge that monetary damages may be inadequate for breach of this Agreement and that injunctive relief may be appropriate.</li>
+                <li><strong>Entire Agreement:</strong> This document constitutes the entire agreement between the parties regarding the subject matter.</li>
+                <li><strong>Amendment:</strong> Any modification must be in writing and signed by both parties.</li>
+            </ol>
+        </div>
+        
+        <div class="signature-block">
+            <div class="signature">
+                <div class="signature-label">Disclosing Party:</div>
+                <div>{{ disclosing_party }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+            
+            <div class="signature">
+                <div class="signature-label">Receiving Party:</div>
+                <div>{{ receiving_party }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>This document was generated by AI Contract Generator on {{ generation_date }}. This is not legal advice.</p>
+        </div>
+        <!-- download button -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="/submit_missing" style="background-color: var(--secondary-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Confirm</a>
+        </div>
+    </div>
+</body>
+</html>

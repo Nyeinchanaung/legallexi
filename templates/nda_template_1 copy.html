@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NDA Agreement - Standard Legal</title>
+    <style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --dark-color: #333;
+        --light-color: #f9f9f9;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: var(--dark-color);
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--light-color);
+    }
+
+    .contract-container {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .contract-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: 1rem;
+    }
+
+    h1 {
+        font-family: 'Playfair Display', serif;
+        color: var(--primary-color);
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+
+    p {
+        margin-bottom: 1rem;
+        text-align: justify;
+    }
+
+    .effective-date {
+        text-align: center;
+        font-style: italic;
+        margin-bottom: 2rem;
+    }
+
+    .parties {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0;
+    }
+
+    .party {
+        width: 30%;
+    }
+
+    .party-name {
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .signature-block {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 4rem;
+    }
+
+    .signature {
+        width: 45%;
+        border-top: 1px solid #333;
+        padding-top: 1rem;
+    }
+
+    .signature-label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: #777;
+    }
+
+    .clause {
+        margin-bottom: 1.5rem;
+    }
+
+    .clause-title {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    ol, ul {
+        margin: 1rem 0 1rem 2rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+    .download-button {
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .download-button:hover {
+        background-color: #2980b9;
+    }
+
+    /* Ensure content fits within PDF pages */
+    .contract-container {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* Prevent elements from being split across pages */
+    h1, h2, .parties, .signature-block, .footer {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        page-break-before: auto;
+        page-break-after: auto;
+    }
+
+    /* Adjust margins for better content fit */
+    @media print {
+        .contract-container {
+            margin: 0.5in;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="contract-container">
+        <div class="contract-header">
+            <h1>NON-DISCLOSURE AGREEMENT (General)</h1>
+            <p class="effective-date">Effective as of {{ effective_date }}</p>
+        </div>
+        
+        <div class="parties">
+            <div class="party">
+                <div class="party-name">{{ disclosing_party }}</div>
+                <div>(the "Disclosing Party")</div>
+            </div>
+            <div class="party">
+                <div class="party-name">{{ receiving_party }}</div>
+                <div>(the "Receiving Party")</div>
+            </div>
+        </div>
+        
+        <h2>1. Purpose</h2>
+        <p>WHEREAS, the Disclosing Party possesses proprietary information relating to {{ purpose_description | default("its business operations and services") }}; and WHEREAS, the parties desire to explore a potential business relationship;</p>
+        
+        <h2>2. Definition of Confidential Information</h2>
+        <div class="clause">
+            <p>"Confidential Information" shall mean any data or information, oral or written, disclosed by the Disclosing Party to the Receiving Party, including but not limited to:</p>
+            <ol type="a">
+                <li>Information expressly marked as confidential;</li>
+                <li>Trade secrets, business plans, and technical data;</li>
+                <li>Any information the Receiving Party should reasonably consider confidential.</li>
+            </ol>
+        </div>
+        
+        <h2>3. Obligations</h2>
+        <div class="clause">
+            <p>The Receiving Party shall:</p>
+            <ol type="a">
+                <li>Hold the Confidential Information in strict confidence;</li>
+                <li>Not disclose such information without prior written consent;</li>
+                <li>Use the information solely for the Purpose.</li>
+            </ol>
+        </div>
+        
+        <h2>4. Term</h2>
+        <div class="clause">
+            <p>This Agreement shall remain in effect for {{ confidentiality_period | default("one (1) year") }} from the Effective Date, unless terminated earlier by mutual agreement.</p>
+        </div>
+        
+        <h2>5. Return of Materials</h2>
+        <p>All Confidential Information shall be returned to the Disclosing Party within {{ return_period | default("thirty (30) days") }} upon request.</p>
+        
+       
+        <h2>6. Non-Compete</h2>
+        <p>The Receiving Party shall not engage in activities competitive with the Disclosing Party’s business for {{ non_compete_period | default("one (1) year") }} post-termination.</p>
+        
+        <h2>7. General Provisions</h2>
+        <div class="clause">
+            <ol type="a">
+                <li>This Agreement is governed by the laws of {{ governing_law | default(" Thailand") }};</li>
+                <li>Any breach may result in injunctive relief;</li>
+                <li>This Agreement constitutes the entire understanding between the parties.</li>
+            </ol>
+        </div>
+        
+        <div class="signature-block">
+            <div class="signature">
+                <div class="signature-label">Disclosing Party:</div>
+                <div>{{ disclosing_party }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+            
+            <div class="signature">
+                <div class="signature-label">Receiving Party:</div>
+                <div>{{ receiving_party }}</div>
+                <div style="margin-top: 3rem;">Signature: ___________________________</div>
+                <div>Name: ___________________________</div>
+                <div>Title: ___________________________</div>
+                <div>Date: ___________________________</div>
+            </div>
+        </div>
+        {% if download %}
+        <div style="text-align: center; margin-top: 2rem;"></div>
+            <form method="POST" action="/download_pdf/1">
+                <input type="text" name="contract_id" value="nda">
+                <input type="hidden" name="template_choice" value="1">
+                <input type="text" name="original_data_json" value="{{ original_data_json }}">
+                <button type="submit" class="download-button">Download as PDF</button>
+            </form>
+        </div>  
+        <div class="footer">
+            <p>Generated by AI Contract Generator on {{ generation_date }}. Not legal advice.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

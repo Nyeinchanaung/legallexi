@@ -42,7 +42,7 @@ regex==2024.11.6
 requests==2.32.3
 rich==14.0.0
 safetensors==0.5.3
-setuptools==78.1.1
+setuptools==79.0.1
 shellingham==1.5.4
 smart-open==6.4.0
 --prefer-binary

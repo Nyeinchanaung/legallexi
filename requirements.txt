@@ -29,7 +29,7 @@ murmurhash==1.0.12
 networkx==3.4.2
 numpy==1.26.4
 packaging==25.0
-pathlib_abc==0.1.1
+pathlib_abc==0.4.3
 pathy==0.11.0
 pdfkit==1.0.0
 pip-upgrader==1.4.15
